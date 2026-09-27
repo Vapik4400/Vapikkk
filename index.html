@@ -1,16 +1,115 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Мой первый сайт</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TikTok Time Checker</title>
+  
+  <!-- СЮДИ МИ ВСТАВИМО СКРИПТ РЕКЛАМИ НА КРОЦІ 3 -->
+
+  <style>
+    body {
+      background-color: #121212;
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .card {
+      background-color: #1e1e1e;
+      padding: 30px 20px;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 380px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border-radius: 8px;
+      border: 1px solid #333;
+      background-color: #2a2a2a;
+      color: #fff;
+      font-size: 16px;
+      margin-bottom: 15px;
+      box-sizing: border-box;
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border-radius: 8px;
+      border: none;
+      background: linear-gradient(45deg, #ff0050, #00f2fe);
+      color: #fff;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .result {
+      margin-top: 25px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #00f2fe;
+      display: none;
+    }
+  </style>
 </head>
 <body>
 
-  <h1>Привет, мир!</h1>
-  <p>Это мой первый сайт, который я создаю на iPhone.</p>
+  <div class="card">
+    <h1>⏱ Сколько времени ты провел в TikTok?</h1>
+    
+    <input type="text" id="username" placeholder="Введите свой ник в TikTok (@nick)">
+    <button onclick="checkTime()">Результат 🎬</button>
 
-  <button>Нажми меня</button>
+    <div id="resultBox" class="result"></div>
+  </div>
+
+  <script>
+    function checkTime() {
+      const input = document.getElementById('username').value.trim();
+      const resultBox = document.getElementById('resultBox');
+
+      if (input === '') {
+        alert('Пожалуйста, введите свой никнейм!');
+        return;
+      }
+
+      // 1. Показываем результат
+      resultBox.style.display = 'block';
+      resultBox.style.color = '#ffffff';
+      resultBox.innerText = 'Загрузка аккаунта...';
+
+      // 2. Вызываем рекламу (если рекламный скрипт поддерживает показ по клику)
+      if (typeof show_pop === 'function') {
+        show_pop(); // Запуск рекламы
+      }
+
+      setTimeout(() => {
+        const randomHours = Math.floor(Math.random() * 2400) + 100;
+        const randomDays = Math.floor(randomHours / 24);
+
+        resultBox.style.color = '#00f2fe';
+        resultBox.innerHTML = `Пользователь <b>${input}</b> провел в TikTok:<br><br>⌛ <b>${randomHours} часов</b> (~${randomDays} дней жизни)!`;
+      }, 2500);
+    }
+  </script>
 
 </body>
 </html>
-
